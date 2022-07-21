@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>무야호</title>
+    <title>Title</title>
+
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<h2>홈 화면</h2>
+
+<input type="text" placeholder="유저 이름" id="name">
+<input type="text" placeholder="유저 닉네임" id="LOC">
+
+<input type="button" onclick="userAdd();"  value="유저추가"></input>
+
+
+<script>
+
+    function userAdd(){
+
+        var name=$('#name').val();
+        var nick=$('#LOC').val();
+
+        alert('name : '+name+" --- "+nick);
+
+        $.ajax({
+            url: "/procUserAdd",
+            type: "post",
+            data: {
+                name : name,
+                LOC :nick
+            },success: function (){
+                alert("성공!")
+            },error: function (){
+                alert("오류")
+            }
+
+        });
+    }
+
+</script>
 </body>
 </html>
