@@ -1,67 +1,34 @@
 package com.example.comento.controller;
 
-import com.example.comento.domain.Board;
+import com.example.comento.domain.BoardDto;
 import com.example.comento.service.BoardService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 
 @Controller
-@RequestMapping("/board")
+@AllArgsConstructor
 public class BoardController {
+    private BoardService boardService;
 
-    private  BoardService boardService;
-
-    @GetMapping("/list")
-    public String list(Model model) {
-
-        model.addAttribute("board", boardService.list());
-        return "list";
+    @GetMapping("/")
+    public String list() {
+        return "/board/list";
     }
 
-    @GetMapping("/detail/{idx}")
-    public String detail(@PathVariable int idx, Model model) {
-
-        model.addAttribute("board", boardService.detail(idx));
-        return "detail";
+    @GetMapping("/post")
+    public String write() {
+        return "/board/write";
     }
 
-    @GetMapping("/register")
-    public String registerGet() {
+    @PostMapping("/post")
+    public String write(BoardDto boardDto) {
+        boardService.savePost(boardDto);
 
-        return "register";
-    }
-
-    @PostMapping("/register")
-    public String registerPost(Board board) {
-
-        boardService.register(board);
-        return "redirect:/board/list";
-    }
-
-    @GetMapping("/update/{idx}")
-    public String updateGet(@PathVariable int idx, Model model) {
-
-        model.addAttribute("board", boardService.detail(idx));
-        return "update";
-    }
-
-    @PostMapping("/update")
-    public String updatePost(Board board) {
-
-        boardService.update(board);
-        return "redirect:/board/list";
-    }
-
-    @GetMapping("/delete/{idx}")
-    public String delete(@PathVariable int idx) {
-
-        boardService.delete(idx);
-        return "redirect:/board/list";
+        return "redirect:/";
     }
 }

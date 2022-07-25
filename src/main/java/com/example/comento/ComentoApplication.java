@@ -1,15 +1,10 @@
 package com.example.comento;
 
-import com.example.comento.domain.Board;
-import com.example.comento.repository.BoardRepository;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import java.time.LocalDateTime;
-import java.util.stream.IntStream;
-
+@EnableJpaAuditing //Base Entity에 있는 날짜 자동 입력 활성화
 @SpringBootApplication
 public class ComentoApplication {
 
