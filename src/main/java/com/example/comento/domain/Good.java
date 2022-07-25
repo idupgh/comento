@@ -1,4 +1,4 @@
-package com.example.comento.controller;
+package com.example.comento.domain;
 
 import lombok.*;
 

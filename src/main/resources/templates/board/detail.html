@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .main {
+            width: 500px;
+            height: 700px;
+            margin: auto;
+        }
+
+        label {
+            display: inline-block;
+            width: 60px;
+        }
+
+        input {
+            display: inline-block;
+            width: 400px;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            width: 470px;
+            height: 400px;
+        }
+
+        #update {
+            text-align: center;
+            display: inline-block;
+            border: 1px solid;
+            width: 80px;
+            height: 30px;
+            background-color: moccasin;
+            text-decoration: none;
+            line-height: 30px;
+        }
+
+        #delete {
+            text-align: center;
+            display: inline-block;
+            border: 1px solid;
+            width: 80px;
+            height: 30px;
+            background-color: lightpink;
+            text-decoration: none;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <label for="writer">작성자 :</label>
+    <input type="text" name="writer" id="writer" th:value="${board.writer}" disabled>
+    <label for="title">제목 :</label>
+    <input type="text" name="title" id="title" th:value="${board.title}" disabled>
+    <label for="content">내용 :</label>
+    <textarea name="content" id="content" th:text="${board.content}" disabled></textarea>
+    <a th:href="@{/board/update/{idx}(idx=${board.idx})}" id="update">수정</a>
+    <a th:href="@{/board/delete/{idx}(idx=${board.idx})}" id="delete">삭제</a>
+</div>
+</body>
+</html>
