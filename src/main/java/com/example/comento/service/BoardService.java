@@ -20,7 +20,47 @@ public class BoardService {
     private BoardRepository boardRepository;
 
     @Transactional
+    public List<BoardDto> getBoardlist() {
+        List<Board> boards = boardRepository.findAll();
+        List<BoardDto> boardDtoList = new ArrayList<>();
+
+        for (Board board : boards) {
+            BoardDto boardDto = BoardDto.builder()
+                    .id(board.getId())
+                    .title(board.getTitle())
+                    .content(board.getContent())
+                    .writer(board.getWriter())
+                    .createdDate(board.getCreatedDate())
+                    .build();
+
+            boardDtoList.add(boardDto);
+        }
+        return boardDtoList;
+    }
+
+    @Transactional
     public Long savePost(BoardDto boardDto) {
         return boardRepository.save(boardDto.toEntity()).getId();
     }
+
+    @Transactional
+    public BoardDto getPost(Long id) {
+        Optional<Board> boardWrapper = boardRepository.findById(id);
+        Board board = boardWrapper.get();
+
+        BoardDto boardDTO = BoardDto.builder()
+                .id(board.getId())
+                .title(board.getTitle())
+                .content(board.getContent())
+                .writer(board.getWriter())
+                .createdDate(board.getCreatedDate())
+                .build();
+        return boardDTO;
+    }
+
+    @Transactional
+    public void deletePost(Long id) {
+        boardRepository.deleteById(id);
+    }
+
 }

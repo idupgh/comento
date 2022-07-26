@@ -1,52 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
-    <style>
-        .main {
-            width: 500px;
-            height: 700px;
-            margin: auto;
-        }
-
-        label {
-            display: inline-block;
-            width: 60px;
-        }
-
-        input {
-            display: inline-block;
-            width: 400px;
-            margin-bottom: 10px;
-        }
-
-        textarea {
-            width: 470px;
-            height: 400px;
-        }
-
-        button {
-            margin-top: 10px;
-            width: 70px;
-            background-color: cyan;
-            border: 1px solid;
-        }
-    </style>
 </head>
 <body>
-<div class="main">
-    <form method="post" th:action="@{/board/update}">
-        <input type="hidden" name="idx" id="idx" th:value="${board.idx}">
-        <label for="writer">작성자 :</label>
-        <input type="text" name="writer" id="writer" th:value="${board.writer}">
-        <label for="title">제목 :</label>
-        <input type="text" name="title" id="title" th:value="${board.title}">
-        <label for="content">내용 :</label>
-        <textarea name="content" id="content" th:text="${board.content}"></textarea>
-        <button type="submit">수정</button>
-    </form>
-</div>
+<form th:action="@{'/post/edit/' + ${boardDto.id}}" method="post">
+    <input type="hidden" name="_method" value="put"/>
+    <input type="hidden" name="id" th:value="${boardDto.id}"/>
+
+    제목 : <input type="text" name="title" th:value="${boardDto.title}"> <br>
+    작성자 : <input type="text" name="writer" th:value="${boardDto.writer}"> <br>
+    <textarea name="content" th:text="${boardDto.content}"></textarea><br>
+
+    <input type="submit" value="수정">
+</form>
 </body>
 </html>
