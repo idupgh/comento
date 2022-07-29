@@ -41,6 +41,7 @@ public class BoardService {
     @Transactional
     public Long savePost(BoardDto boardDto) {
         return boardRepository.save(boardDto.toEntity()).getId();
+        // save 는 JPARepository 에 정의된 메서드 Entity를 전달한다
     }
 
     @Transactional
