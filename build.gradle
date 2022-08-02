@@ -21,7 +21,7 @@ repositories {
 
 dependencies {
     implementation 'junit:junit:4.13.1'
-    runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+
 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -38,6 +38,9 @@ dependencies {
     // querydsl : jpa 로 고급 질의 처리 어려움을 해결
     implementation "com.querydsl:querydsl-jpa:5.0.0"
     implementation "com.querydsl:querydsl-apt:5.0.0"
+
+    compile 'mysql:mysql-connector-java'
+    runtimeOnly 'mysql:mysql-connector-java'
 }
 
 tasks.named('test') {
