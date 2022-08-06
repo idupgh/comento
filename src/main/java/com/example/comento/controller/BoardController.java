@@ -2,7 +2,6 @@ package com.example.comento.controller;
 
 import com.example.comento.domain.BoardDto;
 import com.example.comento.service.BoardService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class BoardController {
-    private BoardService boardService;
+    private final BoardService boardService;
 
     /* 게시글 목록 */
     @GetMapping("/")
