@@ -9,18 +9,18 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 
-
+@FieldDefaults(level = FieldDefaults.PRIVATE)
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 public class BoardDto {
-    private Long id;
-    private String writer;
-    private String title;
-    private String content;
-    private LocalDateTime createdDate;
-    private LocalDateTime modifiedDate;
+    Long id;
+    String writer;
+    String title;
+    String content;
+    LocalDateTime createdDate;
+    LocalDateTime modifiedDate;
 
     public Board toEntity(){
         // DTO 에서 필요한 부분을 빌더패턴을 통해 entity 로 만듦
